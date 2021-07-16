@@ -159,8 +159,8 @@ def setup_dns(namespace, dns_type):
 
 
 def assert_all_or_none(message, *variables):
-    if any(variables) and not all(variables):
-        raise ValueError(message, *variables)
+    #if any(variables) and not all(variables):
+    #    raise ValueError(message, *variables)
     return any(variables)
 
 
@@ -205,11 +205,11 @@ def route_up(args):
     )
 
     if ipv4_enabled:
-        peer_addr = '%s/32' % (route_vpn_gateway,)
+        #peer_addr = '%s/32' % (route_vpn_gateway,)
         # give it its ipv4 address
         subprocess.check_call(
             _enter_namespace_cmd(namespace) +
-            [IP_CMD, 'addr', 'add', ifconfig_local, 'peer', peer_addr, 'dev', dev]
+            [IP_CMD, 'addr', 'add', ifconfig_local, 'dev', dev]
         )
         # route all traffic over the tunnel
         subprocess.check_call(
